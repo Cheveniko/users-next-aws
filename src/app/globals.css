@@ -57,3 +57,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+.modal {
+  width: clamp(50%, 400px, 90%);
+  height: min(50%, 200px);
+}

@@ -1,32 +1,31 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Pencil, Trash2 } from "lucide-react";
+import Link from "next/link";
+import DeleteButton from "./delete-button";
 
-export const ImageOptions: React.FC = () => {
-  // Todo
-  const handleEdit = () => {
-    console.log("Edit");
-  };
+type ImageOptionsProps = {
+  firstName: string;
+  id: string;
+};
 
-  // Todo
+export const ImageOptions: React.FC<ImageOptionsProps> = ({
+  id,
+  firstName,
+}) => {
   const handleDelete = () => {
     console.log("Delete");
   };
 
   return (
     <div className="flex flex-grow gap-x-4">
-      <Button onClick={handleEdit} variant="secondary" className="grow gap-x-2">
-        Editar
-        <Pencil className="size-4" />
-      </Button>
-      <Button
-        onClick={handleDelete}
-        variant="destructive"
-        className="grow gap-x-2"
-      >
-        Borrar
-        <Trash2 className="size-4" />
-      </Button>
+      <Link href="/edit" className="inline-flex grow">
+        <Button variant="secondary" className="grow gap-x-2">
+          Editar
+          <Pencil className="size-4" />
+        </Button>
+      </Link>
+      <DeleteButton id={id} firstName={firstName} />
     </div>
   );
 };
