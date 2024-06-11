@@ -2,6 +2,7 @@
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -15,6 +16,7 @@ type User = {
   lastName: string;
   email: string;
   photoUrl: string;
+  createdAt: string;
 };
 
 export const ImagesContainer: React.FC = () => {
@@ -43,7 +45,7 @@ export const ImagesContainer: React.FC = () => {
 type ImageCardProps = { user: User };
 
 export const ImageCard: React.FC<ImageCardProps> = ({ user }) => {
-  const { firstName, lastName, email, photoUrl, id } = user;
+  const { firstName, lastName, email, photoUrl, id, createdAt } = user;
 
   return (
     <Card className="col-span-4">
@@ -51,7 +53,13 @@ export const ImageCard: React.FC<ImageCardProps> = ({ user }) => {
         <img src={photoUrl} alt={firstName} className="rounded-t-md" />
       </CardHeader>
       <CardContent>
-        <CardTitle>{firstName}</CardTitle>
+        <CardTitle>
+          {firstName} {lastName}
+        </CardTitle>
+        <CardDescription>
+          {email} <br />
+          Creado el: {createdAt.slice(0, 10)}
+        </CardDescription>
       </CardContent>
       <CardFooter>
         <ImageOptions firstName={firstName} id={id} />

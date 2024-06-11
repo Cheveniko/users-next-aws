@@ -17,8 +17,14 @@ import {
 import { Button } from "@/components/ui/button";
 import { ImagePlus } from "lucide-react";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
-export const EditImageForm: React.FC = () => {
+type EditImageFormProps = {
+  id: string;
+};
+
+export const EditImageForm: React.FC<EditImageFormProps> = ({ id }) => {
+  const router = useRouter();
   const [preview, setPreview] = React.useState<string | ArrayBuffer | null>("");
 
   const formSchema = z.object({
@@ -75,13 +81,15 @@ export const EditImageForm: React.FC = () => {
     formData.append("lastName", values.lastName);
     formData.append("email", values.email);
 
+    console.log(formData);
     const reponse = await fetch(
-      "http://ec2-18-232-180-146.compute-1.amazonaws.com/api/users/create",
+      `http://ec2-18-232-180-146.compute-1.amazonaws.com/api/users/${id}`,
       { method: "PUT", body: formData, redirect: "follow" },
     );
     const data = await reponse.json();
     console.log(data);
     toast.success(`Usuario editado correctamente 🎉 ${values.image.name}`);
+    router.push("/");
   };
 
   return (

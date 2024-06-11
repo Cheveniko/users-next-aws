@@ -1,6 +1,5 @@
 import { FC } from "react";
 
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import { motion } from "framer-motion";
@@ -40,9 +39,12 @@ const Modal: FC<ModalProps> = ({ handleClose, id, firstName }) => {
   const router = useRouter();
 
   const deleteArticle = async () => {
-    await fetch(`https://www.lacanica.ec/api/articles/${id}`, {
-      method: "DELETE",
-    })
+    await fetch(
+      `http://ec2-18-232-180-146.compute-1.amazonaws.com/api/users/${id}`,
+      {
+        method: "DELETE",
+      },
+    )
       .then((r) => r.json())
       .then((data) => console.log(data));
 
