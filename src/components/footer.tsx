@@ -6,7 +6,7 @@ export const Footer: React.FC = () => {
     <div className="text-muted-foreground">
       <p>EPN 2024-A</p>
       <Link
-        href="/"
+        href="https://github.com/Cheveniko/users-next-aws"
         className="flex w-fit gap-x-2 transition-all hover:text-foreground"
       >
         <Github />
