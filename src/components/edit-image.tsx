@@ -83,7 +83,7 @@ export const EditImageForm: React.FC<EditImageFormProps> = ({ id }) => {
 
     console.log(formData);
     const reponse = await fetch(
-      `http://ec2-54-83-98-189.compute-1.amazonaws.com/api/users/${id}`,
+      `http://ec2-54-226-156-198.compute-1.amazonaws.com/api/users/${id}`,
       { method: "PUT", body: formData, redirect: "follow" },
     );
     const data = await reponse.json();

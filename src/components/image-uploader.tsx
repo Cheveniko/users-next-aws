@@ -78,7 +78,7 @@ export const ImageUploader: React.FC = () => {
     formData.append("email", values.email);
 
     const reponse = await fetch(
-      "http://ec2-54-83-98-189.compute-1.amazonaws.com/api/users/create",
+      "http://ec2-54-226-156-198.compute-1.amazonaws.com/api/users/create",
       { method: "POST", body: formData, redirect: "follow" },
     );
     const data = await reponse.json();
