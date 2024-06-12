@@ -7,6 +7,7 @@ export const Footer: React.FC = () => {
       <p>EPN 2024-A</p>
       <Link
         href="https://github.com/Cheveniko/users-next-aws"
+        target="_blank"
         className="flex w-fit gap-x-2 transition-all hover:text-foreground"
       >
         <Github />

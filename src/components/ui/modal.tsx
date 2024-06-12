@@ -40,7 +40,7 @@ const Modal: FC<ModalProps> = ({ handleClose, id, firstName }) => {
 
   const deleteArticle = async () => {
     await fetch(
-      `http://ec2-18-232-180-146.compute-1.amazonaws.com/api/users/${id}`,
+      `http://ec2-34-228-145-128.compute-1.amazonaws.com/api/users/${id}`,
       {
         method: "DELETE",
       },

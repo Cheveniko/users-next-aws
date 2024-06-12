@@ -24,7 +24,7 @@ export const ImagesContainer: React.FC = () => {
 
   React.useEffect(() => {
     fetch(
-      "http://ec2-18-232-180-146.compute-1.amazonaws.com/api/users/get-all-users",
+      "http://ec2-34-228-145-128.compute-1.amazonaws.com/api/users/get-all-users",
     ).then((res) =>
       res.json().then((data) => {
         console.log(data);
