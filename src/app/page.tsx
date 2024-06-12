@@ -20,11 +20,11 @@ export default function Home() {
       <div className="space-y-8 rounded-lg border p-6">
         <div className="flex items-center justify-between">
           <h3 className="scroll-m-20 text-center text-2xl font-semibold tracking-tight">
-            Imágenes subidas
+            Usuarios creados
           </h3>
           <Link href="/new">
             <Button className="flex gap-x-2 text-base">
-              <CirclePlus /> Nueva imagen
+              <CirclePlus /> Nuevo usuario
             </Button>
           </Link>
         </div>
