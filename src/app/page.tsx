@@ -5,12 +5,13 @@ import { CirclePlus } from "lucide-react";
 import Link from "next/link";
 
 export const dynamic = "force-dynamic";
+
 export default function Home() {
   return (
     <main className="container min-h-screen space-y-8 pb-4 pt-20">
       <div className="space-y-4">
         <h1 className="scroll-m-20 text-center text-4xl font-extrabold tracking-tight lg:text-5xl">
-          Proyecto primer bimestre Cloud Computing
+          Proyecto segundo bimestre Cloud Computing
         </h1>
         <h3 className="scroll-m-20 text-center text-xl font-semibold tracking-tight text-muted-foreground">
           Grupo 5: Nicolás Baquero, Adhisson Cedeño, José Guzmán, Alejandra Oña,
