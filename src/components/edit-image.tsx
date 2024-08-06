@@ -18,6 +18,8 @@ import { Button } from "@/components/ui/button";
 import { ImagePlus } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { User } from "./images-container";
+import { API_URL } from "@/lib/utils";
 
 type EditImageFormProps = {
   id: string;
@@ -26,6 +28,7 @@ type EditImageFormProps = {
 export const EditImageForm: React.FC<EditImageFormProps> = ({ id }) => {
   const router = useRouter();
   const [preview, setPreview] = React.useState<string | ArrayBuffer | null>("");
+  const photoUrlRef = React.useRef("");
 
   const formSchema = z.object({
     firstName: z.string().min(1, "Debes ingresar el nombre"),
@@ -47,6 +50,32 @@ export const EditImageForm: React.FC<EditImageFormProps> = ({ id }) => {
       image: new File([""], "filename"),
     },
   });
+
+  React.useEffect(() => {
+    const fillUserFields = async () => {
+      const response = await fetch(`${API_URL}/${id}`);
+
+      if (!response.ok) {
+        toast.error(
+          "Ocurrió un error al cargar el evento, por favor recarga la página e intenta de nuevo",
+          { duration: Infinity },
+        );
+      }
+
+      const user: User = await response.json();
+      setPreview(user.photoUrl);
+      photoUrlRef.current = user.photoUrl;
+
+      form.reset({
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        image: new File([""], "filename"),
+      });
+    };
+
+    fillUserFields();
+  }, [id, form]);
 
   const onDrop = React.useCallback(
     (acceptedFiles: File[]) => {
@@ -82,10 +111,11 @@ export const EditImageForm: React.FC<EditImageFormProps> = ({ id }) => {
     formData.append("email", values.email);
 
     console.log(formData);
-    const reponse = await fetch(
-      `http://ec2-54-226-156-198.compute-1.amazonaws.com/api/users/${id}`,
-      { method: "PUT", body: formData, redirect: "follow" },
-    );
+    const reponse = await fetch(`${API_URL}/${id}`, {
+      method: "PUT",
+      body: formData,
+      redirect: "follow",
+    });
     const data = await reponse.json();
     console.log(data);
     toast.success(`Usuario editado correctamente 🎉 ${values.image.name}`);

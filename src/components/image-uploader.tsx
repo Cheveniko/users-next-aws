@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button";
 import { ImagePlus } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { API_URL } from "@/lib/utils";
 
 export const ImageUploader: React.FC = () => {
   const router = useRouter();
@@ -77,10 +78,11 @@ export const ImageUploader: React.FC = () => {
     formData.append("lastName", values.lastName);
     formData.append("email", values.email);
 
-    const reponse = await fetch(
-      "http://ec2-54-226-156-198.compute-1.amazonaws.com/api/users/create",
-      { method: "POST", body: formData, redirect: "follow" },
-    );
+    const reponse = await fetch(`${API_URL}/create`, {
+      method: "POST",
+      body: formData,
+      redirect: "follow",
+    });
     const data = await reponse.json();
     console.log(data);
     toast.success(`Imagen subida correctamente 🎉 ${values.image.name}`);

@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import Backdrop from "./backdrop";
 
 import { Trash2 } from "lucide-react";
+import { API_URL } from "@/lib/utils";
 
 type ModalProps = {
   handleClose: () => void;
@@ -39,12 +40,9 @@ const Modal: FC<ModalProps> = ({ handleClose, id, firstName }) => {
   const router = useRouter();
 
   const deleteArticle = async () => {
-    await fetch(
-      `http://ec2-54-226-156-198.compute-1.amazonaws.com/api/users/${id}`,
-      {
-        method: "DELETE",
-      },
-    )
+    await fetch(`${API_URL}/${id}`, {
+      method: "DELETE",
+    })
       .then((r) => r.json())
       .then((data) => console.log(data));
 

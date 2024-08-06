@@ -10,23 +10,23 @@ import {
 } from "@/components/ui/card";
 import { ImageOptions } from "@/components/image-options";
 import React from "react";
+import { API_URL } from "@/lib/utils";
 
-type User = {
+export type User = {
   id: string;
   firstName: string;
   lastName: string;
   email: string;
   photoUrl: string;
   createdAt: string;
+  updatedAt: string;
 };
 
 export const ImagesContainer: React.FC = () => {
   const [users, setUsers] = React.useState<User[]>([]);
 
   React.useEffect(() => {
-    fetch(
-      "http://ec2-54-226-156-198.compute-1.amazonaws.com/api/users/get-all-users",
-    ).then((res) =>
+    fetch(`${API_URL}/get-all-users`).then((res) =>
       res.json().then((data) => {
         console.log(data);
         setUsers(data);
